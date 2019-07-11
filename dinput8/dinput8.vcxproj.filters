@@ -21,9 +21,6 @@
     <ClInclude Include="dinput8.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="hookFunctions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Hacks\VideoHack.h">
       <Filter>Header Files\Hacks</Filter>
     </ClInclude>

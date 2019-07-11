@@ -1,13 +1,17 @@
 #include "dinput8.h"
 
-HMODULE baseModule;
+short ScreenWidthLast = 800;
+bool bHooked = false;
 
 void WidescreenFix()
 {
 	while (true)
 	{
 		short ScreenWidth = *(short*)0x00728F70;
-		*(short*)0x00728F74 = ScreenWidth / 4 * 3;
+		if (ScreenWidthLast != ScreenWidth)
+			Sleep(10000);
+		ScreenWidthLast = ScreenWidth;
+		*(short*)0x00728F74 = ScreenWidthLast / 4 * 3;
 		Sleep(1000);
 	}
 }
@@ -34,12 +38,6 @@ bool WINAPI DllMain(HMODULE hModule, DWORD fdwReason, LPVOID lpReserved)
 			dinput8.DllRegisterServer = (LPWDllRegisterServer)GetProcAddress(dinput8.dll, "DllRegisterServer");
 			dinput8.DllUnregisterServer = (LPWDllUnregisterServer)GetProcAddress(dinput8.dll, "DllUnregisterServer");
 
-			//Get base module
-			baseModule = GetModuleHandle(NULL);
-			UnprotectModule(baseModule);
-
-			CreateThread(NULL, NULL, (LPTHREAD_START_ROUTINE)WidescreenFix, NULL, NULL, NULL);
-
 			break;
 		}
 		case DLL_PROCESS_DETACH:
@@ -55,6 +53,29 @@ bool WINAPI DllMain(HMODULE hModule, DWORD fdwReason, LPVOID lpReserved)
 
 HRESULT WINAPI DirectInput8Create(HINSTANCE hinst, DWORD dwVersion, REFIID riidltf, LPVOID * ppvOut, LPUNKNOWN punkOuter)
 {
+	//Following makes sure only 1 thread is created and that it is created only for battlefront.exe
+	if (!bHooked)
+	{
+		HMODULE baseModule = GetModuleHandle(NULL);
+		char buffer[MAX_PATH];
+		if (GetModuleFileName(baseModule, buffer, MAX_PATH) != 0)
+		{
+			char fileName[MAX_PATH];
+			GetFileTitle(buffer, fileName, MAX_PATH);
+			for (int i = 0; i < strlen(fileName); i++)
+			{
+				fileName[i] = tolower(fileName[i]);
+			}
+
+			if (strstr(fileName, "battlefront.exe"))
+			{
+				CreateThread(NULL, NULL, (LPTHREAD_START_ROUTINE)WidescreenFix, NULL, NULL, NULL);
+			}
+		}
+
+		bHooked = true;
+	}
+
 	HRESULT hr = dinput8.DirectInput8Create(hinst, dwVersion, riidltf, ppvOut, punkOuter);
 
 	return hr;

@@ -3,7 +3,6 @@
 #include <dinput.h>
 #include <iostream>
 #include <thread>
-#include "hookFunctions.h"
 #define INITGUID
 #define DIRECTINPUT_VERSION 0x0800
 

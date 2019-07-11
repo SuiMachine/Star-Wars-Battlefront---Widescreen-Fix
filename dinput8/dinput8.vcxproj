@@ -80,7 +80,6 @@
     <ClInclude Include="dinput8.h" />
     <ClInclude Include="Hacks\VideoHack.h" />
     <ClInclude Include="Hacks\VisRenderer.h" />
-    <ClInclude Include="hookFunctions.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dinput8.cpp" />
