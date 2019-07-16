@@ -26,6 +26,15 @@ bool WINAPI DllMain(HMODULE hModule, DWORD fdwReason, LPVOID lpReserved)
 			dinput8.DllUnregisterServer = (LPWDllUnregisterServer)GetProcAddress(dinput8.dll, "DllUnregisterServer");
 #pragma warning(enable:6387) 
 
+			if (hacks == NULL)
+				hacks = new battlefront_hacks();
+
+			//Following makes sure only 1 thread is created and that it is created only for battlefront.exe
+			if (!hacks->hooked && hacks->IsBattlefront())
+			{
+				hacks->Hook();
+			}
+
 			break;
 		}
 		case DLL_PROCESS_DETACH:
@@ -41,15 +50,6 @@ bool WINAPI DllMain(HMODULE hModule, DWORD fdwReason, LPVOID lpReserved)
 
 HRESULT WINAPI DirectInput8Create(HINSTANCE hinst, DWORD dwVersion, REFIID riidltf, LPVOID * ppvOut, LPUNKNOWN punkOuter)
 {
-	if (hacks == NULL)
-		hacks = new battlefront_hacks();
-
-	//Following makes sure only 1 thread is created and that it is created only for battlefront.exe
-	if (!hacks->hooked && hacks->IsBattlefront())
-	{
-		hacks->Hook();
-	}
-
 	HRESULT hr = dinput8.DirectInput8Create(hinst, dwVersion, riidltf, ppvOut, punkOuter);
 	return hr;
 	

@@ -4,7 +4,7 @@
 #include <iostream>
 #include <thread>
 #include <d3d9.h>
-#include "battlefront_hacks.h"
+#include <battlefront_hacks.h>
 #define INITGUID
 #define DIRECTINPUT_VERSION 0x0800
 

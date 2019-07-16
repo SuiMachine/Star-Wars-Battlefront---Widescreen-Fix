@@ -34,6 +34,8 @@
 
 # Debug build
 Debug/
+# Release static lib
+
 
 # Archives
 *.zip
@@ -41,3 +43,7 @@ Debug/
 # Intermediate build directories
 dinput8/Debug/*
 dinput8/Release/*
+d3d9/Debug/*
+d3d9/Release/*
+SharedCode/Debug/*
+SharedCode/Release/*
