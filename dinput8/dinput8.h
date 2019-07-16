@@ -3,6 +3,8 @@
 #include <dinput.h>
 #include <iostream>
 #include <thread>
+#include <d3d9.h>
+#include "battlefront_hacks.h"
 #define INITGUID
 #define DIRECTINPUT_VERSION 0x0800
 
@@ -19,7 +21,7 @@ public:
 	STDMETHOD(DllCanUnloadNow)(THIS);
 	STDMETHOD(DllGetClassObject)(THIS_ REFCLSID, REFIID, LPVOID);
 	STDMETHOD(DllRegisterServer)(THIS);
-	STDMETHOD(DllUnregisterServer)(THIS);
+	STDMETHOD(DllUnregisterServer)(THIS); 
 
 };
 

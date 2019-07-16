@@ -43,7 +43,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>..\..\..\GOG Games\Star Wars - Battlefront\GameData</OutDir>
+    <OutDir>..\..\..\GOG Games\Star Wars - Battlefront\GameData\</OutDir>
     <TargetName>dinput8</TargetName>
     <IncludePath>../externals;$(IncludePath)</IncludePath>
   </PropertyGroup>
@@ -59,6 +59,7 @@
     </ClCompile>
     <Link>
       <ModuleDefinitionFile>dinput8.def</ModuleDefinitionFile>
+      <AdditionalDependencies>d3d9.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -77,12 +78,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="battlefront_hacks.h" />
     <ClInclude Include="dinput8.h" />
-    <ClInclude Include="Hacks\VideoHack.h" />
-    <ClInclude Include="Hacks\VisRenderer.h" />
+    <ClInclude Include="HookFunctions.h" />
+    <ClInclude Include="SigScan.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="battlefront_hacks.cpp" />
     <ClCompile Include="dinput8.cpp" />
+    <ClCompile Include="SigScan.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dinput8.def" />

@@ -1,20 +1,6 @@
 #include "dinput8.h"
 
-short ScreenWidthLast = 800;
-bool bHooked = false;
-
-void WidescreenFix()
-{
-	while (true)
-	{
-		short ScreenWidth = *(short*)0x00728F70;
-		if (ScreenWidthLast != ScreenWidth)
-			Sleep(10000);
-		ScreenWidthLast = ScreenWidth;
-		*(short*)0x00728F74 = ScreenWidthLast / 4 * 3;
-		Sleep(1000);
-	}
-}
+battlefront_hacks* hacks;
 
 //Dll Main
 bool WINAPI DllMain(HMODULE hModule, DWORD fdwReason, LPVOID lpReserved)
@@ -32,11 +18,13 @@ bool WINAPI DllMain(HMODULE hModule, DWORD fdwReason, LPVOID lpReserved)
 
 			//Set pointers
 			dinput8.dll = LoadLibraryA(path);
+#pragma warning(disable:6387)
 			dinput8.DirectInput8Create = (LPWDirectInput8Create)GetProcAddress(dinput8.dll, "DirectInput8Create");
 			dinput8.DllCanUnloadNow = (LPWDllCanUnloadNow)GetProcAddress(dinput8.dll, "DllCanUnloadNow");
 			dinput8.DllGetClassObject = (LPWDllGetClassObject)GetProcAddress(dinput8.dll, "DllGetClassObject");
 			dinput8.DllRegisterServer = (LPWDllRegisterServer)GetProcAddress(dinput8.dll, "DllRegisterServer");
 			dinput8.DllUnregisterServer = (LPWDllUnregisterServer)GetProcAddress(dinput8.dll, "DllUnregisterServer");
+#pragma warning(enable:6387) 
 
 			break;
 		}
@@ -53,32 +41,18 @@ bool WINAPI DllMain(HMODULE hModule, DWORD fdwReason, LPVOID lpReserved)
 
 HRESULT WINAPI DirectInput8Create(HINSTANCE hinst, DWORD dwVersion, REFIID riidltf, LPVOID * ppvOut, LPUNKNOWN punkOuter)
 {
+	if (hacks == NULL)
+		hacks = new battlefront_hacks();
+
 	//Following makes sure only 1 thread is created and that it is created only for battlefront.exe
-	if (!bHooked)
+	if (!hacks->hooked && hacks->IsBattlefront())
 	{
-		HMODULE baseModule = GetModuleHandle(NULL);
-		char buffer[MAX_PATH];
-		if (GetModuleFileName(baseModule, buffer, MAX_PATH) != 0)
-		{
-			char fileName[MAX_PATH];
-			GetFileTitle(buffer, fileName, MAX_PATH);
-			for (int i = 0; i < strlen(fileName); i++)
-			{
-				fileName[i] = tolower(fileName[i]);
-			}
-
-			if (strstr(fileName, "battlefront.exe"))
-			{
-				CreateThread(NULL, NULL, (LPTHREAD_START_ROUTINE)WidescreenFix, NULL, NULL, NULL);
-			}
-		}
-
-		bHooked = true;
+		hacks->Hook();
 	}
 
 	HRESULT hr = dinput8.DirectInput8Create(hinst, dwVersion, riidltf, ppvOut, punkOuter);
-
 	return hr;
+	
 }
 
 HRESULT WINAPI DllCanUnloadNow()

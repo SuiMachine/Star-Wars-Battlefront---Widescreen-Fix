@@ -13,23 +13,29 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\Hacks">
-      <UniqueIdentifier>{372c6a51-7eb6-4131-99fd-f40a799a6845}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dinput8.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Hacks\VideoHack.h">
-      <Filter>Header Files\Hacks</Filter>
+    <ClInclude Include="battlefront_hacks.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Hacks\VisRenderer.h">
-      <Filter>Header Files\Hacks</Filter>
+    <ClInclude Include="SigScan.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HookFunctions.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dinput8.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="battlefront_hacks.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SigScan.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
