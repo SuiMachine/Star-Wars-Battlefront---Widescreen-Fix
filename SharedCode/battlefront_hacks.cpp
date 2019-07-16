@@ -9,7 +9,21 @@ void WidescreenFix()
 		if (ScreenWidth != 0)
 		{
 			if (ScreenWidthLast != ScreenWidth)
-				Sleep(10000);
+			{
+#if _DEBUG
+				OutputDebugString("Waiting 16s after value change\n");
+#endif
+				Sleep(16000);
+			}
+#if  _DEBUG
+			if (ScreenWidthLast != ScreenWidth)
+			{
+				char output[MAX_PATH];
+				sprintf_s(output, "Screen width changed from %d to %d\n", ScreenWidthLast, ScreenWidth);
+				OutputDebugString(output);
+			}
+#endif
+
 			ScreenWidthLast = ScreenWidth;
 			*(short*)0x00728F74 = ScreenWidthLast / 4 * 3;
 		}
