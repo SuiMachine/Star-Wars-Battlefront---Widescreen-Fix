@@ -1,3 +1,11 @@
+Installation
+--------------------
+1. Extract all of the files.
+2. Move them to <Star Wars - Battlefront Directory>\GameData
+3. If you're planning on running your own FPS capping solution, remove D3D9.dll.
+
+Licence
+--------------------
 MIT License
 
 Copyright (c) 2019 Jakub Dylus (SuicideMachine / SuiMachine)
