@@ -1,5 +1,5 @@
 del StarWarsBattlefront-Fix.zip
-7za a -tzip "StarWarsBattlefront-Fix.zip" "dinput8.dll" "scripts/Battlefront-Fixes.asi" "d3d9.dll" "d3d9.ini" "Readme.txt"
+7za a -tzip "StarWarsBattlefront-Fix.zip" "dinput8.dll" "scripts/Battlefront-Fixes.asi" "scripts/global.ini" "d3d9.dll" "d3d9.ini" "Readme.txt"
 
 @echo off
 echo 7-Zip Extra"

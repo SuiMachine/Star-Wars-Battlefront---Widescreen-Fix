@@ -142,10 +142,7 @@ release.cmd</Command>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ResourceCompile Include="Versioninfo.rc">
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">rsc_CompanyName=\"ThirteenAG\";rsc_LegalCopyright=\"MIT License\";rsc_FileVersion=\"1.0.0.0\";rsc_ProductVersion=\"1.0.0.0\";rsc_InternalName=\"ExeUnprotect\";rsc_ProductName=\"ExeUnprotect\";rsc_OriginalFilename=\"ExeUnprotect.dll\";rsc_FileDescription=\"Ultimate ASI Loader\";rsc_UpdateUrl=\"https://github.com/ThirteenAG/Ultimate-ASI-Loader\";DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">rsc_CompanyName=\"ThirteenAG\";rsc_LegalCopyright=\"MIT License\";rsc_FileVersion=\"1.0.0.0\";rsc_ProductVersion=\"1.0.0.0\";rsc_InternalName=\"ExeUnprotect\";rsc_ProductName=\"ExeUnprotect\";rsc_OriginalFilename=\"ExeUnprotect.dll\";rsc_FileDescription=\"Ultimate ASI Loader\";rsc_UpdateUrl=\"https://github.com/ThirteenAG/Ultimate-ASI-Loader\";DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-    </ResourceCompile>
+    <ResourceCompile Include="Versioninfo.rc" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FovHack.cpp" />

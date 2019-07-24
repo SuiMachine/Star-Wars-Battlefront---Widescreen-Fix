@@ -30,7 +30,11 @@ FovHack::FovHack()
 	HMODULE mod = GetModuleHandle(NULL);
 	intptr_t address = (intptr_t)mod + 0xCBE67;
 	HookInsideFunction(address, AspectRatioDetour, &returnAspectratioDetour, 8);
-	CreateThread(NULL, NULL, (LPTHREAD_START_ROUTINE)RefreshResolutionThread, NULL, NULL, NULL);
+	
+	//Silent told me to fix it... 1 handle... oh well.
+	HANDLE initThread = CreateThread(NULL, NULL, (LPTHREAD_START_ROUTINE)RefreshResolutionThread, NULL, NULL, NULL);
+	SetThreadPriority(initThread, THREAD_PRIORITY_BELOW_NORMAL);
+	CloseHandle(initThread);
 
 }
 
