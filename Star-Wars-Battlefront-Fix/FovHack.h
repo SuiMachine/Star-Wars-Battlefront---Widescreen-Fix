@@ -8,5 +8,7 @@ class FovHack
 {
 public:
 	FovHack();
+private:
+	void RefreshResolution();
 };
 
