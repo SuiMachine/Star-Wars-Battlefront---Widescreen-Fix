@@ -41,9 +41,5 @@ Debug/
 *.zip
 
 # Intermediate build directories
-dinput8/Debug/*
-dinput8/Release/*
-d3d9/Debug/*
-d3d9/Release/*
-SharedCode/Debug/*
-SharedCode/Release/*
+Star-Wars-Battlefront-Fix/Debug/*
+Star-Wars-Battlefront-Fix/Release/*

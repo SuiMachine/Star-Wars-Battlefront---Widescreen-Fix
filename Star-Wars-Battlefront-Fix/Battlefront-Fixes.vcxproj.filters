@@ -15,18 +15,30 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="dinput8.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <ResourceCompile Include="Versioninfo.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="dinput8.cpp">
+    <ClCompile Include="MenuResOverride.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FovHack.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StarWarsBattleFront-Fix.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="dinput8.def">
-      <Filter>Source Files</Filter>
-    </None>
+    <ClInclude Include="HookFunctions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuResOverride.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FovHack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
