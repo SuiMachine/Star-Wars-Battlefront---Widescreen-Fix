@@ -27,8 +27,8 @@ void FovHack::RefreshResolution()
 	{
 		short ScreenWidth = *(short*)0x00728F70;
 		short ScreenHeight = *(short*)0x00728F74;
-
-		correction = ScreenWidth * 1.0f / ScreenHeight / 1.3333333f;
+		if(ScreenWidth != 0 && ScreenHeight != 0)
+			correction = ScreenWidth * 1.0f / ScreenHeight / 1.3333333f;
 		Sleep(2000);
 	}
 }
