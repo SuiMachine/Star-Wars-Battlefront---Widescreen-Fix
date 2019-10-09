@@ -8,7 +8,7 @@ __declspec(naked) void AspectRatioDetour()
 	{
 		mov [esp+28],eax
 		fild dword ptr [esp+28]
-		fdiv[correction]
+		fdiv [correction]
 		jmp returnAspectratioDetour
 	}
 }
@@ -28,14 +28,11 @@ void RefreshResolutionThread()
 FovHack::FovHack()
 {
 	HMODULE mod = GetModuleHandle(NULL);
-	intptr_t address = (intptr_t)mod + 0xCBE67;
-	HookInsideFunction(address, AspectRatioDetour, &returnAspectratioDetour, 8);
+	HookInsideFunction((intptr_t)mod + 0xCBE67, AspectRatioDetour, &returnAspectratioDetour, 8);
 	
 	//Silent told me to fix it... 1 handle... oh well.
 	HANDLE initThread = CreateThread(NULL, NULL, (LPTHREAD_START_ROUTINE)RefreshResolutionThread, NULL, NULL, NULL);
 	SetThreadPriority(initThread, THREAD_PRIORITY_BELOW_NORMAL);
 	CloseHandle(initThread);
-
 }
-
 

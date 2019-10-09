@@ -20,7 +20,7 @@ BOOL WINAPI DllMain(HINSTANCE hInst, DWORD reason, LPVOID)
 			MenuHack = new MenuResOverride(iniReader.ReadInteger("MenuOverride", "Width", 0), iniReader.ReadInteger("MenuOverride", "Height", 0));
 		}
 
-		if (fovHack == NULL)
+		if (fovHack == NULL && iniReader.ReadBoolean("Game", "CorrectAspectRatio", true))
 		{
 			fovHack = new FovHack();
 		}

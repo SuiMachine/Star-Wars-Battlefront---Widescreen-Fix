@@ -4,6 +4,6 @@
     <LocalDebuggerCommand>..\..\..\GOG Games\Star Wars - Battlefront\GameData\Battlefront.exe</LocalDebuggerCommand>
     <LocalDebuggerWorkingDirectory>..\..\..\GOG Games\Star Wars - Battlefront\GameData\</LocalDebuggerWorkingDirectory>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
-    <LocalDebuggerCommandArguments>/win</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>/win /nointro</LocalDebuggerCommandArguments>
   </PropertyGroup>
 </Project>

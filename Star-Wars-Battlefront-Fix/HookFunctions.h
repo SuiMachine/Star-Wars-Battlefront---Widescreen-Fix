@@ -68,3 +68,14 @@ static bool HookCallTrampoline(DWORD targetToHook, void* ourFunction, int overri
 	VirtualProtect((void*)targetToHook, overrideLenght, curProtectionFlag, &temp);
 	return true;
 }
+
+template<class Out, class In>
+Out type_pun(In x)
+{
+	union {
+		In a;
+		Out b;
+	};
+	a = x;
+	return b;
+};
